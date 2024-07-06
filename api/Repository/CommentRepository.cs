@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using api.Data;
 using api.Interfaces;
 using api.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,7 +35,20 @@ namespace api.Repository
             return await _context.Comments.FindAsync(id);
         }
 
-        
-        
+        public async Task<Comment> UpdateCommentAsync(int id, Comment commentmodel)
+        {
+            var existingComment = await _context.Comments.FindAsync(id);
+
+            if(existingComment == null){
+                return null;
+            }
+
+            existingComment.Title = commentmodel.Title;
+            existingComment.Content = commentmodel.Content;
+
+            await _context.SaveChangesAsync();
+
+            return existingComment;
+        }
     }
 }
