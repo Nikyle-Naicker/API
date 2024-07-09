@@ -28,32 +28,39 @@ namespace api.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> Login(LoginDto loginDto)
         {
-            if(!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
+            try{
+
+                if(!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == loginDto.UserName.ToLower());
+
+                if(user == null)
+                {
+                    return Unauthorized("Invalid credentails!");
+                }
+
+                var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
+
+                if(!result.Succeeded)
+                {
+                    return Unauthorized("Invalid Credientials");
+                }
+
+                return Ok(
+                new NewUserDto
+                {
+                    Username = user.UserName,
+                    Email = user.Email,
+                    Token = _tokenService.CreateToken(user)
+                });
             }
-
-            var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == loginDto.UserName.ToLower());
-
-            if(user == null)
+            catch(Exception ex)
             {
-                return Unauthorized("Invalid credentails!");
+                return StatusCode(500, ex);
             }
-
-            var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
-
-            if(!result.Succeeded)
-            {
-                return Unauthorized("Invalid Credientials");
-            }
-
-            return Ok(
-            new NewUserDto
-            {
-                Username = user.UserName,
-                Email = user.Email,
-                Token = _tokenService.CreateToken(user)
-            });
 
         }
 
