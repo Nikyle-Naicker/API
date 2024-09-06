@@ -15,7 +15,7 @@ export interface CompanySearch {
     lastDiv: number;
     range: string;
     changes: number;
-    name: string;
+    companyName: string;
     currency: string;
     cik: string;
     isin: string;
