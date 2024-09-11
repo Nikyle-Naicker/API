@@ -62,7 +62,7 @@ namespace api.Controllers
             }
 
             var stockModel = stockDto.ToStockFromCreateDto();
-            await _stockRepo.CreateStockAsync(stockModel);
+            await _stockRepo.CreateStock(stockModel);
             return CreatedAtAction(nameof(GetById), new { id = stockModel.Id }, stockModel.ToStockDto());
         }
 
