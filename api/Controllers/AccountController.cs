@@ -25,7 +25,7 @@ namespace api.Controllers
             _signInManager = signInManager;
         }
 
-        [HttpPost("Login")]
+        [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto loginDto)
         {
             try{
