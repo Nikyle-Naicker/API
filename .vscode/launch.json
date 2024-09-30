@@ -11,6 +11,12 @@
             "type": "chrome",
             "request": "launch",
             "url": "http://localhost:3000/",
+        },
+        {
+            "name": "Deployed",
+            "type": "firefox",
+            "request": "attach",
+            "url": "https://nikyle-naicker.github.io/API/",
         }
     ]
 }

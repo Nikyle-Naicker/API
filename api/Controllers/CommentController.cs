@@ -60,7 +60,8 @@ namespace api.Controllers
             return Ok(comment.ToCommentDto());
         }
 
-        [HttpPost("/{symbol:alpha}")]
+        [HttpPost]
+        [Route("{symbol:alpha}")]
         public async Task<IActionResult> CreateComment([FromRoute] string symbol, CreateCommentDto commentDto){
             
         if(!ModelState.IsValid)
