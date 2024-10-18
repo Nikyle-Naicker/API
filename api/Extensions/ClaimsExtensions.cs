@@ -4,6 +4,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
+//Gets the username from the xml scheme
+
 namespace api.Extensions
 {
     public static class ClaimsExtensions

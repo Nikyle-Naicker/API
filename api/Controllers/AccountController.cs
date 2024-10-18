@@ -25,6 +25,8 @@ namespace api.Controllers
             _signInManager = signInManager;
         }
 
+        //Handles Login
+
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto loginDto)
         {
@@ -63,6 +65,8 @@ namespace api.Controllers
             }
 
         }
+
+        //Handles Register 
 
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)

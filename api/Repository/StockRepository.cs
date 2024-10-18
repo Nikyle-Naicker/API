@@ -9,6 +9,8 @@ using api.Interfaces;
 using api.Models;
 using Microsoft.EntityFrameworkCore;
 
+//Holds all the asynchronous methods that read/write to the stock table in the database
+
 namespace api.Repository
 {
     public class StockRepository : IStockRepository
