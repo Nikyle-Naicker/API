@@ -32,6 +32,8 @@ namespace api.Controllers
             _fmpService = fmpService;
         }
 
+        //Displays user stock portfolio
+
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> GetUserPortfolio()
@@ -41,6 +43,8 @@ namespace api.Controllers
             var userPortfolio = await _portfolioRepo.GetUserPortfolio(AppUser);
             return Ok(userPortfolio);
         }
+
+        //updates user's portfolio
 
         [HttpPost]
         [Authorize]
@@ -92,6 +96,8 @@ namespace api.Controllers
             return Created();            
 
         }
+
+        //Deletes stock from user portfolio
 
         [HttpDelete]
         [Authorize]

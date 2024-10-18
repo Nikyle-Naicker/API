@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
+//Holds all the asynchronous methods that read/write to the comment table in the database
+
 namespace api.Repository
 {
     public class CommentRepository : ICommentRepository

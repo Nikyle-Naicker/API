@@ -31,6 +31,8 @@ namespace api.Controllers
             _fmpService = fmpService;
         }
 
+        //Displays all User Comments
+
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> GetAllComments([FromQuery]CommentQueryObject queryObject){
@@ -46,6 +48,8 @@ namespace api.Controllers
             return Ok(commentDto);
         }
 
+        //Displays user comment by id
+
         [HttpGet]
         [Route("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute]int id)
@@ -60,39 +64,44 @@ namespace api.Controllers
             return Ok(comment.ToCommentDto());
         }
 
+        //Creates new user comment
+
         [HttpPost]
         [Route("{symbol:alpha}")]
-        public async Task<IActionResult> CreateComment([FromRoute] string symbol, CreateCommentDto commentDto){
+        public async Task<IActionResult> CreateComment([FromRoute] string symbol, CreateCommentDto commentDto)
+        {
             
-        if(!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        var stock = await _stockRepo.GetBySymbolAsync(symbol);
+            var stock = await _stockRepo.GetBySymbolAsync(symbol);
 
-        if(stock == null)
-        {
-            stock = await _fmpService.FindStockBySymbolAsync(symbol);
             if(stock == null)
             {
-                return BadRequest("Stock does not exist");
+                stock = await _fmpService.FindStockBySymbolAsync(symbol);
+                if(stock == null)
+                {
+                    return BadRequest("Stock does not exist");
+                }
+                else
+                {
+                    await _stockRepo.CreateStock(stock);
+                }
             }
-            else
-            {
-                await _stockRepo.CreateStock(stock);
-            }
+
+            var username = User.GetUsername();
+            var appUser = await _userManager.FindByNameAsync(username);
+
+
+            var commentModel = commentDto.ToCommentFromCreate(stock.Id);
+            commentModel.AppUserId = appUser.Id;
+            await _commentRepo.CreateCommentAsync(commentModel);
+            return CreatedAtAction(nameof(GetById), new { id = commentModel.Id}, commentModel.ToCommentDto());
         }
 
-        var username = User.GetUsername();
-        var appUser = await _userManager.FindByNameAsync(username);
-
-
-        var commentModel = commentDto.ToCommentFromCreate(stock.Id);
-        commentModel.AppUserId = appUser.Id;
-        await _commentRepo.CreateCommentAsync(commentModel);
-        return CreatedAtAction(nameof(GetById), new { id = commentModel.Id}, commentModel.ToCommentDto());
-        }
+        //Updates user comment
 
         [HttpPut]
         [Route("{id:int}")]
@@ -111,6 +120,8 @@ namespace api.Controllers
             return Ok(comment.ToCommentDto());
 
         }
+
+        //Deletes user comment
 
         [HttpDelete]
         [Route("{id:int}")]

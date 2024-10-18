@@ -25,6 +25,8 @@ namespace api.Controllers
             _context = context;
         }
 
+        //Displays all stocks to user
+
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> GetAll([FromQuery] QueryObject query){
@@ -38,6 +40,8 @@ namespace api.Controllers
             return Ok(stockDto);
 
         }
+
+        //Displays stock of stockId
 
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id){
@@ -53,6 +57,8 @@ namespace api.Controllers
             }
             return Ok(stock.ToStockDto());
         }
+
+        //Creates new stock
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateStockRequestDto stockDto){
@@ -83,6 +89,8 @@ namespace api.Controllers
             return Ok(stockModel.ToStockDto());
 
         }
+
+        //Deletes stock
 
         [HttpDelete]
         [Route("{id:int}")]
