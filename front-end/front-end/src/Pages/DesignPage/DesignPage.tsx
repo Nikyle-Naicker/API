@@ -1,6 +1,4 @@
-import React from 'react'
-import Table from '../../Components/Table/Table'
-import RatioList from '../../Components/RatioList/RatioList'
+
 
 
 type Props = {};
