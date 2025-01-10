@@ -7,6 +7,8 @@ using api.Models;
 using Newtonsoft.Json;
 using api.Dtos.Stock;
 using api.Mappers;
+using Microsoft.Extensions.Configuration;
+using System.Net.Http;
 
 namespace api.Service
 {
