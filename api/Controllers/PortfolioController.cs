@@ -93,7 +93,7 @@ namespace api.Controllers
                 return StatusCode(500, "Could not create portfolio");
             }
 
-            return Created();            
+            return StatusCode(201, "Created Portfolio");            
 
         }
 
