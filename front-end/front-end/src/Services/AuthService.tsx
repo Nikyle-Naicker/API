@@ -2,7 +2,7 @@ import axios from "axios";
 import { handleError } from "../Helpers/ErrorHandler";
 import { UserProfileToken } from "../Models/User";
 
-const api = "https://delightful-island-0a0d63a1e.4.azurestaticapps.net/";
+const api = "http://localhost:5169/api/";
 
 export const loginAPI = async (username: string, password: string) => {
     try
