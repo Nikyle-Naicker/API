@@ -2,12 +2,13 @@ import axios from "axios";
 import { handleError } from "../Helpers/ErrorHandler";
 import { UserProfileToken } from "../Models/User";
 
-const api = "https://delightful-island-0a0d63a1e.4.azurestaticapps.net/api/";
+//const api = "https://delightful-island-0a0d63a1e.4.azurestaticapps.net/api/";
 
 export const loginAPI = async (username: string, password: string) => {
     try
     {
-        const data = await axios.post<UserProfileToken>(api + "account/login", {
+        const data = await axios.post<UserProfileToken>(//api + 
+        "/api/account/login", {
             username: username,
             password: password
         });
