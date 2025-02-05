@@ -13,10 +13,10 @@ import RegisterPage from "../Pages/RegisterPage/RegisterPage";
 import ProtectedRoute from "./ProtectedRoute";
 
 export const router = createBrowserRouter([{
-    path: "/*",
+    path: "/",
     element: <App />,
     children: [
-        {path: "", element: <HomePage/>},
+        {path: "*", element: <HomePage/>},
         {path: "login", element: <LoginPage /> },
         {path: "register", element: <RegisterPage /> },
         {path: "search", element: <ProtectedRoute><SearchPage/></ProtectedRoute>},
