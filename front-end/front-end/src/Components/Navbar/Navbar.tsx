@@ -22,7 +22,7 @@ const Navbar = (props: Props) => {
           </div>
         </div>
         {isLoggedIn() ? (
-          <div className="hidden lg:flex items-center space-x-6 text-back">
+          <div className="flex items-center lg:flex items-center space-x-6 text-back">
           <div>
             <div className="hover:text-darkBlue">Welcome, {user?.userName}</div>
           </div>
@@ -34,7 +34,7 @@ const Navbar = (props: Props) => {
           </a>
         </div>
         ) : (
-          <div className="hidden lg:flex items-center space-x-6 text-back">
+          <div className="flex items-center lg:flex items-center space-x-6 text-back">
           <Link to="/login" >
             <div className="hover:text-darkBlue">Login</div>
           </Link>

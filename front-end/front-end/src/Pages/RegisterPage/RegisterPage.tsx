@@ -116,12 +116,12 @@ const RegisterPage = (props: Props) => {
                 Register
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Don’t have an account yet?{" "}
+                Have an account?{" "}
                 <a
                   href="#"
-                  className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                  className="underline font-medium  text-primary-600 hover:text-white dark:text-primary-500 "
                 >
-                  Sign up
+                  Login Here!
                 </a>
               </p>
             </form>
