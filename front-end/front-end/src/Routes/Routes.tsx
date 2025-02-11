@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, redirect } from "react-router-dom";
 import App from "../App";
 import HomePage from "../Pages/HomePage/HomePage";
 import SearchPage from "../Pages/SearchPage/SearchPage";
@@ -13,7 +13,6 @@ import RegisterPage from "../Pages/RegisterPage/RegisterPage";
 import ProtectedRoute from "./ProtectedRoute";
 
 export const router = createBrowserRouter([{
-    
     path: "/",
     element: <App />,
     children: [
@@ -29,6 +28,7 @@ export const router = createBrowserRouter([{
                 { path: "income-statement", element: <IncomeStatement/> },
                 { path: "balance-sheet", element: <BalanceSheet/> },
                 { path: "cashflow-statement", element: <CashflowStatement/> }
-            ]}
+            ]},
+        {path: "*", element: <HomePage/>}
     ]
 }])
