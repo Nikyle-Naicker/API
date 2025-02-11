@@ -98,7 +98,7 @@ const LoginPage = (props: Props) => {
                 Don’t have an account yet?{" "}
                 <Link
                   to="/register"
-                  className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                  className="underline font-medium text-primary-600 hover:text-white dark:text-primary-500"
                 >
                   Sign up
                 </Link>
